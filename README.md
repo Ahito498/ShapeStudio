@@ -1,84 +1,111 @@
-# ShapeStudio
+# Shape Studio
 
-A C++ graphics application for drawing and manipulating various shapes. This project provides a user-friendly interface for creating, editing, and managing different geometric shapes with various operations.
+A GUI-based shape drawing and management application built with C++ using object-oriented design principles.
+
+![C++](https://img.shields.io/badge/C++-17-blue.svg)
+![OOP](https://img.shields.io/badge/Design-OOP-purple.svg)
+![Graphics](https://img.shields.io/badge/Graphics-CMU%20Graphics%20Lib-orange.svg)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+---
+
+## Overview
+
+Shape Studio is a desktop GUI application for drawing, selecting, and manipulating geometric shapes. Built with C++ using the CMU Graphics Library, it demonstrates a clean MVC-style architecture with a full OOP class hierarchy — where each shape is a self-contained object with its own draw, resize, rotate, and color logic.
+
+---
 
 ## Features
 
-- Draw multiple types of shapes:
-  - Lines
-  - Rectangles
-  - Triangles
-  - Circles
-  - Squares
-  - Ovals
-  - Hexagons
+- Draw 7 shape types: Line, Rectangle, Square, Circle, Triangle, Oval, Hexagon
+- Select, move, resize, and rotate shapes interactively
+- Fill color and draw color management per shape
+- Copy, paste, and delete operations
+- Save and load drawings from file
+- Icon-based GUI menu with CMU Graphics Library
+- Full undo/redo-ready operation architecture
 
-- Shape Operations:
-  - Draw shapes
-  - Change drawing color
-  - Change fill color
-  - Change background color
-  - Delete shapes
-  - Move shapes
-  - Resize shapes
-  - Rotate shapes
-  - Send shapes to back/front
-  - Copy and paste shapes
-  - Save/Load functionality
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Language | C++ (C++17) |
+| GUI Library | CMU Graphics Library |
+| Architecture | MVC (Model-View-Controller) |
+| Build | Visual Studio / g++ |
+
+---
+
+## OOP Design
+
+```
+Shape (Abstract Base Class)
+├── Line
+├── Rect
+│   └── Square
+├── Circle
+├── Triangle
+├── Oval
+└── Hexagon
+
+Operation (Abstract Base Class)
+├── opAddCircle / opAddRect / opAddTriangle ...
+├── opDelete / opCopy / opPaste
+├── opResize / opRotate
+├── opSave / opLoad
+└── CHNGfillColor / opCHNGdrawColor
+```
+
+- **Abstraction**: `Shape` and `Operation` define clean interfaces
+- **Inheritance**: Each shape/operation extends the base with specific logic
+- **Polymorphism**: Shapes stored as `Shape*`, operations as `Operation*`
+- **Encapsulation**: All shape state (position, color, size) fully encapsulated
+
+---
+
+## Getting Started
+
+```bash
+git clone https://github.com/Ahito498/ShapeStudio.git
+cd ShapeStudio
+# Open CIE202-project.sln in Visual Studio
+# Build and run
+```
+
+---
 
 ## Project Structure
 
 ```
 ShapeStudio/
-├── CMUgraphicsLib/     # Graphics library
-├── GUI/                # User interface components
-├── Shapes/            # Shape classes
-│   ├── Circle.cpp/h
-│   ├── Graph.cpp/h
-│   ├── Hexagon.cpp/h
-│   ├── Line.cpp/h
-│   ├── Oval.cpp/h
-│   ├── Rect.cpp/h
-│   ├── Shape.cpp/h
-│   ├── Square.cpp/h
-│   └── Triangle.cpp/h
-├── operations/        # Operation handling
-└── main.cpp          # Program entry point
+├── main.cpp                  # Entry point
+├── controller.h / .cpp       # MVC controller
+├── DEFS.h                    # Global definitions
+├── Shapes/                   # Shape class hierarchy
+│   ├── Shape.h / .cpp        # Abstract base
+│   ├── Circle, Rect, Square, Triangle, Oval, Hexagon, Line
+├── operations/               # Operation class hierarchy
+│   ├── operation.h           # Abstract base
+│   ├── opAdd*, opDelete, opCopy, opPaste, opResize, opRotate ...
+├── GUI/                      # GUI rendering layer
+├── CMUgraphicsLib/           # Graphics library
+└── images/MenuIcons/         # UI icon assets
 ```
 
-## Requirements
+---
 
-- C++ compiler with C++11 support
-- CMU Graphics Library (included)
-- Visual Studio (for Windows users)
+## Key Concepts Demonstrated
 
-## Building the Project
+- Abstract classes, virtual functions, and runtime polymorphism
+- Command/Operation pattern for extensible action handling
+- MVC separation: GUI renders, Controller decides, Shapes hold data
+- File I/O for save/load functionality
+- Event-driven GUI programming
 
-### Using Visual Studio:
-1. Open `CIE202-project.sln` in Visual Studio
-2. Build the solution (Ctrl + Shift + B)
-3. Run the program (F5)
-
-## Usage
-
-1. Launch the application
-2. Use the toolbar to select different operations
-3. Click on the drawing area to create shapes
-4. Use the various tools to modify and manipulate shapes
-5. Save your work using the save functionality
+---
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## Authors
-
-- Hassan Rashwan 
+MIT License
